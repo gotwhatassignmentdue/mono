@@ -1,0 +1,13 @@
+# Global file variable definitions
+@hostname = http://localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+
+### ping and health probe
+GET {{host}}/
+
+### Send user details to create a new telegram deep link for integration
+# No auth for now, but this should be private API only accessible by luminus server
+# POST {{host}}/link/new/:userID
+POST {{host}}/link/new/8073e7cd
+content-type: application/json
