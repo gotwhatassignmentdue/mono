@@ -13,28 +13,13 @@ app.get("/task", authUser, async (req, res) => {
       .status(200)
       .json(
         req.userData.tasks.sort(
-          (a, b) => new Date(b.endDate) - new Date(a.endDate)
+          (a, b) => new Date(a.endDate) - new Date(b.endDate)
         )
       );
   } catch (err) {
     console.log(err.message);
   }
 });
-
-// get list of tasks by module code
-app.get("/task/:module", authUser, async (req, res) => {
-  const { module } = req.params;
-  try {
-    const data = req.userData.tasks;
-    res.status(200).json(data.filter((task) => task.module === module));
-  } catch (err) {
-    console.log(err.message);
-  }
-});
-
-// API TO GET USER INFO
-
-// need router for telebot
 
 app.get("/initiateTelebot/", (req, res) => {
   try {
@@ -48,6 +33,4 @@ app.get("/initiateTelebot/", (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+app.listen(port, () => console.log(`Server listening to ${port}`));

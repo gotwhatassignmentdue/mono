@@ -18,7 +18,6 @@ function pollAndSendReminders() {
     row.all().forEach(async function (row) {
       const response = await axios.get(`http://localhost:3001/task/`, {
         headers: {
-          // "auth-token": "8073e7cd",
           "auth-token": row.userID,
         },
       });
